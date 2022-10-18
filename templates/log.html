@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% block title %}{% endblock%}
+{% endblock %}
+
+{% block body %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-header">Log Details</h1>
+            <hr>
+            <form action="{{ url_for('is_done') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    Current Date: {{res_body["currentDT"]}}
+                    <br>
+                    Requested Method:  {{res_body["request_method"]}}
+                    <br>
+                    File Information: {{res_body["path_info"]}} 
+                    <br>
+                    HTTP User Agent: {{res_body["http_user_agent"]}}
+                    <br>
+                    IP Address: {{res_body["ip_addr"]}}
+                    <br>
+                    Unique Record Id: {{res_body["record_id"]}}
+                    <input type="hidden" name="uid" id="uid" value='{{res_body["record_id"]}}'></input>
+                    <br>
+                    File Name: {{res_body["file_name"]}}
+                </div>
+                <button type="submit" class="btn btn-primary">Done</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

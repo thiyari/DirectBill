@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% block title %}{% endblock%}
+
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    
+    <div class="container" align="center">
+      <br><br>
+        {{operation}}
+        <form valign="center" action="{{ url_for('uid') }}" method="GET" enctype="multipart/form-data">
+            <div class="form-group">
+                Click on Generate UUID to upload a new file
+                <br><br>
+                <button type="submit" class="btn btn-primary">Generate UUID</button>
+                <br><br>
+                To retrieve the file please <a href="{{ url_for('extract') }}"> click here >>></a>
+            </div>
+        </form>
+        
+    </div>
+</body>
+{% endblock %}

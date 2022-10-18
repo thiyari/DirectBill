@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% block title %}{% endblock%}
+{% endblock %}
+
+{% block body %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-header">View Mode</h1>
+            
+            <hr>
+            <center>
+            {% for table in tables %}
+            <!-- {{titles[loop.index]}} -->
+            {{ table|safe }}
+            {% endfor %}
+            </center>
+        </div>
+    </div>
+    <br>
+    <form align="center" action="{{ url_for('openexcel', uid=uid, fname = fname) }}" method="GET" enctype="multipart/form-data">
+        <button type="submit" class="btn btn-primary">Open Excel</button>
+        </form> 
+    <br>
+</div>
+</body>
+{% endblock %}

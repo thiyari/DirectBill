@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.form-inline {
+  display:flex;
+  justify-content: center;
+}
+
+.font-main-header{
+  color: #38ACEC; 
+  font-weight: bold;
+  font-family: Garamond;
+}
+
+.font-header{
+  color:#38ACEC; 
+  font-size: 18px;
+  font-weight:italic;
+  font-family: Verdana;
+}
+
+.list-group{
+  font-style:italic;
+}
+#dirs:hover{
+  color:blue;
+}
+/* Component: TextArea -------------------------------------------------------------------------------    White textarea*/
+
+#pdfTextarea {
+  white-space: pre;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  align-content: center;
+  text-align: left;
+  overflow: auto;
+  border:6px outset;
+  line-height: 1.0;
+  /*border-radius: 0;*/
+  background-color: white;
+  color: rgba(0,0,0,0.87); /*entered text colour*/
+  box-shadow: none;
+  border-radius: 5px;
+  outline: none;
+  /*padding: 20px;*/
+}

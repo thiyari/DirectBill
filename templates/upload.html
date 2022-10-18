@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% block title %} {% endblock%}
+{% endblock %}
+
+{% block body %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-header">Upload Image</h1>
+            <hr>
+            <form action="{{ url_for('upload', uid=id) }}" method="POST" enctype="multipart/form-data" id="file-upload">
+                <div class="form-group">
+                    Note the UUID:<p style="color:red">{{id}}</p>
+                    <!-- <input type="text" name="uid" size=42 value="{{id}}" readonly></input> -->
+                    
+                    <div>
+                        <label>Click on Browse and select the File to Upload</label>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="file" id="file" required>
+                        <label class="custom-file-label" for="file">Select File</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

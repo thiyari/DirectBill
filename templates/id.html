@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% block title %}{% endblock%}
+{% endblock %}
+
+{% block body %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-header">File</h1>
+            <hr>
+            <form action="{{ url_for('retrieve', uid = res['id'], filename = res['files'][0]) }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    Click the Retrieve button
+                    <br><br>
+                    <!-- <input type="hidden" name="uid" id="uid" value='{{res["id"]}}'></input> -->
+                    <!-- <input type="hidden" name="filename" id="filename" value='{{res["files"][0]}}'></input> -->
+                        <div class="list-group">
+                            {% for file in res["files"] %}
+                            <a href="#" class="list-group-item">{{ file }}</a>
+                            {% endfor %}
+                            <br>
+                        </div>
+                    <button type="submit" class="btn btn-primary">Retrieve</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

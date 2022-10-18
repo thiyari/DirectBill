@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block head %}
+{% block title %}{% endblock%}
+{% endblock %}
+
+{% block body %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-header">List of Files</h1>
+            <hr>
+            <form method="GET" enctype="multipart/form-data">
+                <div class="form-group">
+                    Please select the UUID from the available list
+                    <br><br>
+                    <div class="list-group">
+                        {% for file in files %}
+                        {% if file.isnumeric()  %}
+                        <a id="dirs" href="{{ url_for('id', id=file) }}" class="list-group-item list-group-item-action">{{ file }}</a></li>
+                        {% else %}
+                        <a href="#" class="list-group-item list-group-item-action">{{ file }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

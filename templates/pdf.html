@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% block title %}{% endblock%}
+{% endblock %}
+
+{% block body %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="font-header">View Mode</h1>
+                <div class="form-group">
+                    <hr>
+                    <!-- <label for="exampleFormControlTextarea3">Data View</label> -->
+                    <textarea class="form-control" id="pdfTextarea" rows="20" readonly>
+                        {% for line in range(0,len) %}
+                        {{content[line]}}  
+                        {% endfor %}
+                    </textarea>
+            </div>
+
+        </div>
+    </div>
+    <form align="center" action="{{ url_for('openpdf', uid=uid, fname = fname) }}" method="GET" enctype="multipart/form-data">
+    <button type="submit" class="btn btn-primary">Open PDF</button>
+    </form> 
+</div>
+</body>
+{% endblock %}
