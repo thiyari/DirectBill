@@ -240,7 +240,7 @@ def get_files(output_dir):
          return (os.listdir(output_dir))
       elif os.path.isfile(os.path.join(output_dir, file)):
          return (os.listdir(output_dir))
-#test2
+
 @app.route("/extract", methods=['POST','GET'])
 def extract():
    try:
