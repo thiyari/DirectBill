@@ -84,10 +84,10 @@ def uid():
       #timecomponent = uuid.uuid4().node
       return render_template('upload.html',id=id)
 
-@app.route("/is_done", methods=['POST','GET'])
-def is_done():
+@app.route("/is_done/<string:uid>", methods=['POST','GET'])
+def is_done(uid):
    if request.method == "POST":
-      uid = request.form.get('uid')
+      #uid = request.form.get('uid')
       completion_status = False
       already_completed = os.listdir(working_path+"output/")
       if uid in already_completed:

@@ -11,7 +11,7 @@
         <div class="col">
             <h1 class="font-header">Log Details</h1>
             <hr>
-            <form action="{{ url_for('is_done') }}" method="POST" enctype="multipart/form-data">
+            <form action='{{ url_for("is_done", uid=res_body["record_id"]) }}' method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     Current Date: {{res_body["currentDT"]}}
                     <br>
@@ -24,7 +24,7 @@
                     IP Address: {{res_body["ip_addr"]}}
                     <br>
                     Unique Record Id: {{res_body["record_id"]}}
-                    <input type="hidden" name="uid" id="uid" value='{{res_body["record_id"]}}'></input>
+                    <!-- <input type="hidden" name="uid" id="uid" value='{{res_body["record_id"]}}'></input> -->
                     <br>
                     File Name: {{res_body["file_name"]}}
                 </div>
