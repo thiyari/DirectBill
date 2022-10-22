@@ -101,8 +101,9 @@ def is_done(uid):
 @app.route("/openpdf/<string:uid>/<string:fname>",methods=['POST','GET'])
 def openpdf(uid,fname):
    if request.method == "GET":
-      path = working_path+"output/"+uid+"/"+fname
-      subprocess.Popen([path], shell=True)
+      location = working_path+"output/"+uid+"/"+fname
+      absolutePath = Path(location).resolve()
+      subprocess.Popen([absolutePath], shell=True)
       return Response(fname+" is opened",status=201,mimetype='application/json')
 
 @app.route("/openexcel/<string:uid>/<string:fname>",methods=['POST','GET'])

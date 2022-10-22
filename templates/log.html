@@ -14,15 +14,16 @@
             <form action='{{ url_for("is_done", uid=res_body["record_id"]) }}' method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     Current Date: {{res_body["currentDT"]}}
+                    <!-- 
                     <br>
-                    Requested Method:  {{res_body["request_method"]}}
+                     Requested Method:  {{res_body["request_method"]}} 
                     <br>
-                    File Information: {{res_body["path_info"]}} 
+                     File Information: {{res_body["path_info"]}} 
                     <br>
-                    HTTP User Agent: {{res_body["http_user_agent"]}}
+                     HTTP User Agent: {{res_body["http_user_agent"]}}
                     <br>
-                    IP Address: {{res_body["ip_addr"]}}
-                    <br>
+                     IP Address: {{res_body["ip_addr"]}} -->
+                    <br> 
                     Unique Record Id: {{res_body["record_id"]}}
                     <!-- <input type="hidden" name="uid" id="uid" value='{{res_body["record_id"]}}'></input> -->
                     <br>
