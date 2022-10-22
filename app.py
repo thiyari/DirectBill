@@ -13,7 +13,7 @@ import subprocess
 from pathlib import Path
 
 app = Flask(__name__)
-working_path = "/Users/Manikanth/Desktop/DirectBill/home/direct_bill_admin/Documents/projects/DirectBill/DirectBill/"
+working_path = "./home/direct_bill_admin/Documents/projects/DirectBill/DirectBill/"
 app.config["FILE_UPLOADS"] = working_path
 
 @app.route('/')
