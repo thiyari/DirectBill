@@ -256,7 +256,8 @@ def extract():
    except (FileNotFoundError, IOError):
       response = "No files existing in the location, start uploading"
       return Response(response,status=201,mimetype='application/json')
-mode = 'Prod'       
+#Specify mode if developing use 'Dev' else use 'Production
+mode = 'Dev'       
 if __name__ == "__main__":
    # Bind to PORT if defined, otherwise default to 5000.
    port = int(os.environ.get('PORT', 80))
