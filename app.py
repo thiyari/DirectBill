@@ -11,6 +11,7 @@ import datetime
 import subprocess
 #for opening excel
 from pathlib import Path
+from waitress import serve
 
 app = Flask(__name__)
 working_path = "./home/direct_bill_admin/Documents/projects/DirectBill/DirectBill/"
@@ -255,10 +256,13 @@ def extract():
    except (FileNotFoundError, IOError):
       response = "No files existing in the location, start uploading"
       return Response(response,status=201,mimetype='application/json')
-       
+mode = 'Prod'       
 if __name__ == "__main__":
    # Bind to PORT if defined, otherwise default to 5000.
    port = int(os.environ.get('PORT', 80))
-   app.run(host='0.0.0.0', port=port, debug=True)
+   if mode == 'Dev':
+      app.run(host='0.0.0.0', port=port, debug=True)
+   else:
+      serve(app, host='0.0.0.0', port=port, threads=2, url_prefix='/DirectBill')
    
 
