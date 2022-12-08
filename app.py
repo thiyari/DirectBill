@@ -54,7 +54,7 @@ def upload(uid):
             print("File renamed!")
 
          #return 'File '+filename+' is uploaded successfully'
-         res_body = {'currentDT': datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+         res_body = {'current_date': datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
          'request_method': request.method,
          'path_info': request.path,
          'http_user_agent': request.headers.get('User-Agent'),
@@ -73,8 +73,9 @@ async def health():
          os.system("taskkill /f /im python.exe")
       elif condition == "Alive":
          operation = "OK"
+      await asyncio.sleep(1)
       return render_template("health.html",operation=operation)
-   await asyncio.sleep(1)
+   
 
 @app.route("/uid", methods=['POST','GET'])
 def uid():
@@ -85,8 +86,8 @@ def uid():
       #timecomponent = uuid.uuid4().node
       return render_template('upload.html',id=id)
 
-@app.route("/is_done/<string:uid>", methods=['POST','GET'])
-def is_done(uid):
+@app.route("/is_done/<string:uid>/<string:fname>", methods=['POST','GET'])
+def is_done(uid,fname):
    if request.method == "POST":
       #uid = request.form.get('uid')
       completion_status = False
@@ -94,9 +95,29 @@ def is_done(uid):
       if uid in already_completed:
          completion_status = True
       if completion_status == True:
-         response = "Already Completed uploading with uuid"
+         res_body = {
+         'upload_status':'uploaded successfully with uuid',  
+         'current_date': datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+         'path_info': request.path,
+         'http_user_agent': request.headers.get('User-Agent'),
+         'ip_addr': request.remote_addr,
+         'record_id': uid,
+         'file_name': fname}
+         response = jsonify(res_body)
+         response.headers["Content-Type"] = "application/json"
+         return response
       else:
-         response = "Not Completed uploading with uuid! possibly file type is not pdf or xlsx/xls"
+         res_body = {
+         'upload_status':'Not Completed uploading with uuid! possibly file type is not pdf or xlsx/xls',  
+         'current_date': datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+         'path_info': request.path,
+         'http_user_agent': request.headers.get('User-Agent'),
+         'ip_addr': request.remote_addr,
+         'record_id': uid,
+         'file_name': fname}
+         response = jsonify(res_body)
+         response.headers["Content-Type"] = "application/json"
+         return response
    return Response(response,status=201,mimetype='application/json')
 
 @app.route("/openpdf/<string:uid>/<string:fname>",methods=['POST','GET'])
@@ -256,8 +277,8 @@ def extract():
    except (FileNotFoundError, IOError):
       response = "No files existing in the location, start uploading"
       return Response(response,status=201,mimetype='application/json')
-#Specify mode if developing use 'Dev' else use 'Production
-mode = 'Dev'       
+#Specify mode if developing use 'Dev' else use 'Production'
+mode = 'Production'       
 if __name__ == "__main__":
    # Bind to PORT if defined, otherwise default to 5000.
    port = int(os.environ.get('PORT', 80))
